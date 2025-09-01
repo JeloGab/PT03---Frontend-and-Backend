@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Front and Back Communication</title>
+</head>
+<body>
+    <div class="container">
+        <h2>User Interface</h2>
+        <label for="method">Choose Method</label>
+        <select id="method">
+            <option value="POST">POST (Create User)</option>
+            <option value="GET_ID">GET (Get by Code)</option>
+            <option value="PATCH">PATCH (Update Username)</option>
+            <option value="GET_ALL">GET (All Users)</option>
+            <option value="DELETE">DELETE (Delete User)</option>
+        </select>
+         
+
+        <div id="fields">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password">
+        </div>
+
+        <div id="codeField" class="hidden">
+            <label for="code">Code</label>
+            <input type="text" id="code" placeholder="Enter code">
+        </div>
+
+        <div id="idField" class="hidden">
+            <label for="id">User ID</label>
+            <input type="text" id="id" placeholder="Enter user ID">
+        </div>
+
+        <button id="submit">Confirm</button>
+        <div class="response-box"><pre id="responseOutput"></pre>
+        </div>
+    </div>
+
+    <script>
+        const url = "https://fordemo-ot4j.onrender.com";
+        const methodSelect = document.getElementById('method');
+        const fieldsDiv = document.getElementById('fields');
+        const codeField = document.getElementById('codeField');
+        const idField = document.getElementById('idField');
+       
+
+        function updateFields() {
+            fieldsDiv.classList.add('hidden');
+            codeField.classList.add('hidden');
+            idField.classList.add('hidden');
+            if (methodSelect.value === "POST") {
+                fieldsDiv.classList.remove('hidden');
+            } else if (methodSelect.value === "GET_ID") {
+                codeField.classList.remove('hidden');
+            } else if (methodSelect.value === "PATCH") {
+                idField.classList.remove('hidden');
+                document.getElementById('username').value = '';
+                fieldsDiv.classList.remove('hidden');
+                document.getElementById('password').parentElement.classList.add('hidden');
+            } else if (methodSelect.value === "DELETE") {
+                idField.classList.remove('hidden');
+            }
+        }
+
+        methodSelect.addEventListener('change', updateFields);
+        updateFields();
+
+        document.getElementById('submit').onclick = async function() {
+            let res;
+            try {
+                if (methodSelect.value === "POST") {
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    res = await fetch(url + "/users", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username, password })
+                    });
+                } else if (methodSelect.value === "GET_ID") {
+                    const code = document.getElementById('code').value;
+                    res = await fetch(url + "/users/" + code);
+                } else if (methodSelect.value === "PATCH") {
+                    const id = document.getElementById('id').value;
+                    const username = document.getElementById('username').value;
+                    res = await fetch(url + "/users/" + id, {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username })
+                    });
+                } else if (methodSelect.value === "GET_ALL") {
+                    res = await fetch(url + "/users");
+                } else if (methodSelect.value === "DELETE") {
+                    const id = document.getElementById('id').value;
+                    res = await fetch(url + "/users/" + id, { method: "DELETE" });
+                }
+                const data = await res.json();
+                document.getElementById("responseOutput").textContent = JSON.stringify(data, null, 2);
+            } catch (e) {
+                alert("Error: " + e.message);
+            }
+        };
+    </script>
+</body>
+</html></select>

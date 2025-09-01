@@ -1,0 +1,73 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 32px 24px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            color: #444;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #0078d4;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        button:hover {
+            background: #005fa3;
+        }
+        .response {
+            margin-top: 18px;
+            background: #f0f6ff;
+            border-left: 4px solid #0078d4;
+            padding: 12px;
+            border-radius: 4px;
+            color: #222;
+            font-size: 0.98em;
+            word-break: break-all;
+        }
+        .hidden {
+            display: none;
+        }
+        .response-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
