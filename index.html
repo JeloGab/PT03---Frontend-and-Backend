@@ -10,11 +10,11 @@
         <h2>User Interface</h2>
         <label for="method">Choose Method</label>
         <select id="method">
-            <option value="POST">POST (Create User)</option>
-            <option value="GET_ID">GET (Get by Code)</option>
-            <option value="PATCH">PATCH (Update Username)</option>
-            <option value="GET_ALL">GET (All Users)</option>
-            <option value="DELETE">DELETE (Delete User)</option>
+            <option value="POST">POST</option>
+            <option value="GET_CODE">GET by Code</option>
+            <option value="PATCH">PATCH</option>
+            <option value="GET_ALL">GET all Users</option>
+            <option value="DELETE">DELETE</option>
         </select>
          
 
@@ -36,7 +36,9 @@
             <input type="text" id="id" placeholder="Enter user ID">
         </div>
 
+       
         <button id="submit">Confirm</button>
+        
         <div class="response-box"><pre id="responseOutput"></pre>
         </div>
     </div>
@@ -55,7 +57,7 @@
             idField.classList.add('hidden');
             if (methodSelect.value === "POST") {
                 fieldsDiv.classList.remove('hidden');
-            } else if (methodSelect.value === "GET_ID") {
+            } else if (methodSelect.value === "GET_CODE") {
                 codeField.classList.remove('hidden');
             } else if (methodSelect.value === "PATCH") {
                 idField.classList.remove('hidden');
@@ -81,7 +83,7 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ username, password })
                     });
-                } else if (methodSelect.value === "GET_ID") {
+                } else if (methodSelect.value === "GET_CODE") {
                     const code = document.getElementById('code').value;
                     res = await fetch(url + "/users/" + code);
                 } else if (methodSelect.value === "PATCH") {

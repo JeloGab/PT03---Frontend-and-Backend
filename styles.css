@@ -1,9 +1,7 @@
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            margin: 0;
-            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background: #454545;
         }
         .container {
             max-width: 420px;
@@ -25,7 +23,7 @@
             color: #444;
         }
         input, select {
-            width: 100%;
+            width: 90%;
             padding: 8px 10px;
             margin-bottom: 12px;
             border: 1px solid #ccc;
@@ -33,29 +31,21 @@
             font-size: 1em;
         }
         button {
-            width: 100%;
+            width: 80px;
             padding: 10px;
             background: #0078d4;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 1.1em;
             cursor: pointer;
-            margin-top: 8px;
+            margin:8px auto;
+            display:block;
         }
         button:hover {
             background: #005fa3;
         }
-        .response {
-            margin-top: 18px;
-            background: #f0f6ff;
-            border-left: 4px solid #0078d4;
-            padding: 12px;
-            border-radius: 4px;
-            color: #222;
-            font-size: 0.98em;
-            word-break: break-all;
-        }
+        
         .hidden {
             display: none;
         }
